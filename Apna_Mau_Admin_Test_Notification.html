@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apna Mau — Admin + Local Directory</title>
+<style>
+:root{--p:#1267b1;--p2:#0b8f76;--dark:#102a43;--muted:#66788a;--bg:#f4f7fb;--card:#fff;--line:#e4eaf0;--danger:#d83a3a}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,sans-serif;background:var(--bg);color:var(--dark)}
+header{background:linear-gradient(135deg,#083b73,#087bc8,#0c9b80);color:#fff;padding:18px 5% 55px}
+nav{max-width:1180px;margin:auto;display:flex;justify-content:space-between;align-items:center}.logo{font-size:25px;font-weight:800}.tag{font-size:12px;opacity:.9}
+nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:650}.adminBtn{background:#fff;color:#0868b1!important;padding:9px 13px;border-radius:10px}
+.hero{max-width:900px;text-align:center;margin:55px auto 0}.hero h1{font-size:clamp(35px,7vw,60px);margin:0 0 10px}.hero p{font-size:17px;opacity:.93}
+.search{display:flex;background:#fff;padding:7px;border-radius:15px;margin:25px auto 0;max-width:780px;box-shadow:0 14px 35px #001f4d35}.search input{flex:1;border:0;outline:0;padding:14px;font-size:16px}.btn{border:0;background:var(--p);color:#fff;padding:12px 17px;border-radius:10px;font-weight:750;cursor:pointer}.search .btn{padding:0 22px}
+.notification{max-width:780px;margin:12px auto 0;background:#fff;border-radius:10px;overflow:hidden;display:flex;align-items:center;box-shadow:0 8px 20px #001f4d22;color:#102a43}
+.noticeLabel{background:#ffd54a;color:#102a43;font-weight:800;padding:10px 13px;z-index:2;white-space:nowrap}
+.noticeWindow{flex:1;overflow:hidden;white-space:nowrap;padding:9px 0}
+.noticeText{display:inline-block;padding-left:100%;animation:noticeScroll 18s linear infinite;font-weight:650;font-size:14px}
+@keyframes noticeScroll{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+@media(max-width:560px){.notification{margin-top:10px}.noticeText{font-size:13px;animation-duration:15s}}
+
+main{max-width:1180px;margin:-28px auto 60px;padding:0 17px}.section{margin-top:35px}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.head h2{margin:0}.muted{color:var(--muted)}
+.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.cat{background:#fff;border:1px solid var(--line);padding:18px 10px;text-align:center;border-radius:16px;cursor:pointer}.cat:hover{box-shadow:0 8px 25px #102a4312}.cat .i{font-size:28px}.cat b{display:block;margin-top:6px;font-size:14px}
+.list{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.item{background:#fff;border:1px solid var(--line);border-radius:17px;padding:18px}.item h3{margin:0 0 5px}.badge{display:inline-block;background:#e8f7f1;color:#087c5b;border-radius:99px;padding:4px 8px;font-size:11px;font-weight:800;margin-bottom:8px}.meta{font-size:13px;color:var(--muted);line-height:1.7}
+.empty{padding:35px;text-align:center;background:#fff;border:1px dashed #cfd9e4;border-radius:16px;color:var(--muted)}
+.map{height:270px;border-radius:17px;border:1px solid var(--line);background:linear-gradient(135deg,#e8f2df,#e8f2f7);position:relative;overflow:hidden}.map:before{content:"";position:absolute;left:0;right:0;top:48%;height:3px;background:#c3d1bf;transform:rotate(-8deg)}.pin{position:absolute;font-size:25px;cursor:pointer}
+footer{background:#102a43;color:#dbe6f0;text-align:center;padding:35px}
+.modal{display:none;position:fixed;inset:0;background:#0009;z-index:20;align-items:center;justify-content:center;padding:15px}.box{background:#fff;width:min(650px,100%);max-height:92vh;overflow:auto;border-radius:20px;padding:22px}.close{float:right;font-size:23px;cursor:pointer}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{font-size:13px;font-weight:700}.full{grid-column:1/-1}input,select,textarea{width:100%;padding:11px;border:1px solid #d7e0e8;border-radius:9px;margin-top:5px;font:inherit}textarea{min-height:80px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.danger{background:var(--danger)}.secondary{background:#eaf2fa;color:var(--p)}
+.tabs{display:flex;gap:8px;border-bottom:1px solid var(--line);padding-bottom:10px;margin:12px 0}.tab{border:0;background:#eef4f9;padding:9px 13px;border-radius:9px;cursor:pointer;font-weight:700}.tab.active{background:var(--p);color:#fff}.adminList .item{margin-bottom:9px;display:flex;justify-content:space-between;gap:10px;align-items:center}.adminList .actions{margin:0}
+@media(max-width:800px){.cats{grid-template-columns:repeat(3,1fr)}.list{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){nav a:not(.adminBtn){display:none}.cats{grid-template-columns:repeat(2,1fr)}.list{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.search{flex-direction:column}.search .btn{height:45px}}
+</style>
+</head>
+<body>
+<header>
+<nav><div><div class="logo">🏙️ Apna Mau</div><div class="tag">अपना शहर, अपनी पहचान</div></div>
+<div><a href="#categories">Categories</a><a href="#listings">Listings</a><a class="adminBtn" href="#" onclick="openAdmin();return false">⚙️ Admin</a></div></nav>
+<div class="hero"><h1>मऊ में जो चाहिए, यहाँ खोजिए।</h1><p>Shops, hospitals, medicals, restaurants, hotels और local services एक जगह।</p>
+<div class="search"><input id="search" placeholder="जैसे Hospital, Shop, Hotel, ABC..." oninput="renderListings()" ><button class="btn" onclick="renderListings()">🔍 खोजें</button></div>
+<div class="notification" aria-label="Notifications">
+  <div class="noticeLabel">🔔 NOTICE</div>
+  <div class="noticeWindow"><div class="noticeText">Apna Mau पर आपका स्वागत है • नई shops, hospitals, services और local updates यहाँ देखें • अपना business जोड़ें और Mau के लोगों तक पहुँचें • अपना शहर, अपनी पहचान</div></div>
+</div></div>
+</header>
+
+<main>
+<section class="section" id="categories"><div class="head"><div><h2>🔎 Categories</h2><div class="muted">Category चुनकर listings देखें।</div></div></div>
+<div class="cats" id="cats"></div></section>
+
+<section class="section" id="listings"><div class="head"><div><h2>📋 Local Listings</h2><div class="muted" id="count"></div></div></div><div class="list" id="listingBox"></div></section>
+
+<section class="section"><div class="head"><div><h2>📍 Locations</h2><div class="muted">Admin panel से locations जोड़कर map पर दिखा सकते हैं।</div></div></div>
+<div class="map" id="map"></div></section>
+
+<section class="section"><div class="item"><h2>🏪 आपका Business?</h2><p class="muted">Admin panel से नया business, hospital, shop या location जोड़ें।</p><button class="btn" onclick="openAdmin()">+ Add Business / Location</button></div></section>
+</main>
+<footer><b>🏙️ Apna Mau</b><br>अपना शहर, अपनी पहचान<br><small>Prototype • Data इस browser में सुरक्षित रहता है</small></footer>
+
+<div class="modal" id="adminModal"><div class="box"><span class="close" onclick="closeAdmin()">✕</span><h2>⚙️ Apna Mau Admin Panel</h2><p class="muted">यह test version है। अभी data इसी browser के local storage में save होता है।</p>
+<div class="tabs"><button class="tab active" onclick="showTab('business',this)">Business</button><button class="tab" onclick="showTab('location',this)">Location</button></div>
+<div id="businessTab">
+<form onsubmit="saveBusiness(event)"><input type="hidden" id="editId">
+<div class="formgrid"><div><label>Business Name</label><input id="bname" required placeholder="जैसे ABC Mobile Shop"></div>
+<div><label>Category</label><select id="bcat"></select></div>
+<div><label>Mobile</label><input id="bmobile" type="tel" placeholder="10 digit mobile"></div>
+<div><label>Email</label><input id="bemail" type="email" placeholder="email@example.com"></div>
+<div class="full"><label>Address</label><textarea id="baddress" required placeholder="पूरा पता"></textarea></div>
+<div class="full"><label>Google Maps Link (optional)</label><input id="bmap" placeholder="https://maps.google.com/..."></div></div>
+<div class="actions"><button class="btn" type="submit">💾 Save Business</button><button type="button" class="btn secondary" onclick="resetBusiness()">Clear</button></div>
+</form>
+<hr><h3>Added Businesses</h3><div id="adminBusinesses" class="adminList"></div>
+</div>
+<div id="locationTab" style="display:none">
+<form onsubmit="saveLocation(event)"><input type="hidden" id="locId"><div class="formgrid"><div><label>Location Name</label><input id="lname" required placeholder="जैसे Railway Station"></div><div><label>Category</label><input id="lcat" placeholder="Landmark / Area"></div>
+<div class="full"><label>Address</label><input id="laddress" required placeholder="Location address"></div>
+<div><label>Latitude</label><input id="lat" type="number" step="any" placeholder="25.68"></div><div><label>Longitude</label><input id="lng" type="number" step="any" placeholder="83.72"></div></div>
+<div class="actions"><button class="btn" type="submit">📍 Save Location</button><button type="button" class="btn secondary" onclick="resetLocation()">Clear</button></div></form>
+<hr><h3>Added Locations</h3><div id="adminLocations" class="adminList"></div>
+</div></div></div>
+
+<script>
+const categories=[
+["🛍️","Shopping"],["🏥","Hospital"],["💊","Medical"],["🍽️","Restaurant"],["🏨","Hotel"],
+["🚕","Travel"],["🎓","Education"],["🔧","Service"],["💼","Job"],["📅","Event"]
+];
+const seed=[
+{id:1,name:"Pariwar Kirana Store",cat:"Shopping",mobile:"",email:"",address:"Mau City",map:""},
+{id:2,name:"Local Hospital",cat:"Hospital",mobile:"",email:"",address:"Mau City",map:""}
+];
+let businesses=JSON.parse(localStorage.getItem("apnaMauBusinesses")||"null")||seed;
+let locations=JSON.parse(localStorage.getItem("apnaMauLocations")||"[]");
+function save(){localStorage.setItem("apnaMauBusinesses",JSON.stringify(businesses));localStorage.setItem("apnaMauLocations",JSON.stringify(locations))}
+function esc(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function init(){
+document.getElementById("cats").innerHTML=categories.map(c=>`<div class="cat" onclick="filterCat('${c[1]}')"><div class="i">${c[0]}</div><b>${c[1]}</b></div>`).join("");
+document.getElementById("bcat").innerHTML=categories.map(c=>`<option>${c[1]}</option>`).join("");
+renderListings();renderMap();renderAdmin();
+}
+function filterCat(c){document.getElementById("search").value=c;renderListings();document.getElementById("listings").scrollIntoView({behavior:"smooth"})}
+function renderListings(){
+let q=document.getElementById("search").value.trim().toLowerCase();
+let arr=businesses.filter(x=>(!q||(x.name+" "+x.cat+" "+x.address).toLowerCase().includes(q)));
+document.getElementById("count").textContent=arr.length+" listing(s)";
+document.getElementById("listingBox").innerHTML=arr.length?arr.map(x=>`<div class="item"><span class="badge">✓ ${esc(x.cat)}</span><h3>${esc(x.name)}</h3><div class="meta">📍 ${esc(x.address)}<br>${x.mobile?"📞 "+esc(x.mobile):""}</div>${x.map?`<div class="actions"><a class="btn" href="${esc(x.map)}" target="_blank">📍 Directions</a></div>`:""}</div>`).join(""):`<div class="empty">इस search की कोई listing नहीं मिली।<br><br>Admin panel से नई listing जोड़ें।</div>`;
+}
+function renderMap(){
+let m=document.getElementById("map");
+m.innerHTML=locations.length?locations.map((x,i)=>{let left=12+(i*23)%75,top=20+(i*31)%60;return `<span class="pin" style="left:${left}%;top:${top}%" title="${esc(x.name)}">📍</span>`}).join("")+`<div style="position:absolute;inset:0;display:grid;place-items:center;pointer-events:none"><b style="background:#ffffffdd;padding:9px 13px;border-radius:10px">Apna Mau Map • ${locations.length} location(s)</b></div>`:`<div style="height:100%;display:grid;place-items:center;text-align:center"><div>🗺️<br><b>अभी कोई location नहीं है</b><br><small>Admin Panel → Location से जोड़ें</small></div></div>`;
+}
+function openAdmin(){document.getElementById("adminModal").style.display="flex";renderAdmin()}
+function closeAdmin(){document.getElementById("adminModal").style.display="none"}
+function showTab(tab,btn){document.getElementById("businessTab").style.display=tab==="business"?"block":"none";document.getElementById("locationTab").style.display=tab==="location"?"block":"none";document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));btn.classList.add("active")}
+function saveBusiness(e){e.preventDefault();let id=+document.getElementById("editId").value||Date.now();let obj={id,name:document.getElementById("bname").value.trim(),cat:document.getElementById("bcat").value,mobile:document.getElementById("bmobile").value.trim(),email:document.getElementById("bemail").value.trim(),address:document.getElementById("baddress").value.trim(),map:document.getElementById("bmap").value.trim()};let i=businesses.findIndex(x=>x.id===id);if(i>=0)businesses[i]=obj;else businesses.push(obj);save();resetBusiness();renderListings();renderAdmin();alert("Business save हो गया।")}
+function editBusiness(id){let x=businesses.find(x=>x.id===id);document.getElementById("editId").value=x.id;document.getElementById("bname").value=x.name;document.getElementById("bcat").value=x.cat;document.getElementById("bmobile").value=x.mobile;document.getElementById("bemail").value=x.email;document.getElementById("baddress").value=x.address;document.getElementById("bmap").value=x.map;window.scrollTo(0,0)}
+function deleteBusiness(id){if(confirm("इस business को delete करें?")){businesses=businesses.filter(x=>x.id!==id);save();renderListings();renderAdmin()}}
+function resetBusiness(){document.getElementById("editId").value="";document.getElementById("bname").value="";document.getElementById("bmobile").value="";document.getElementById("bemail").value="";document.getElementById("baddress").value="";document.getElementById("bmap").value=""}
+function saveLocation(e){e.preventDefault();let id=+document.getElementById("locId").value||Date.now();let obj={id,name:document.getElementById("lname").value.trim(),cat:document.getElementById("lcat").value.trim(),address:document.getElementById("laddress").value.trim(),lat:document.getElementById("lat").value,lng:document.getElementById("lng").value};let i=locations.findIndex(x=>x.id===id);if(i>=0)locations[i]=obj;else locations.push(obj);save();resetLocation();renderMap();renderAdmin();alert("Location save हो गया।")}
+function editLocation(id){let x=locations.find(x=>x.id===id);document.getElementById("locId").value=x.id;document.getElementById("lname").value=x.name;document.getElementById("lcat").value=x.cat;document.getElementById("laddress").value=x.address;document.getElementById("lat").value=x.lat;document.getElementById("lng").value=x.lng}
+function deleteLocation(id){if(confirm("इस location को delete करें?")){locations=locations.filter(x=>x.id!==id);save();renderMap();renderAdmin()}}
+function resetLocation(){["locId","lname","lcat","laddress","lat","lng"].forEach(id=>document.getElementById(id).value="")}
+function renderAdmin(){
+document.getElementById("adminBusinesses").innerHTML=businesses.length?businesses.map(x=>`<div class="item"><div><b>${esc(x.name)}</b><div class="muted">${esc(x.cat)} • ${esc(x.address)}</div></div><div class="actions"><button class="btn secondary" onclick="editBusiness(${x.id})">Edit</button><button class="btn danger" onclick="deleteBusiness(${x.id})">Delete</button></div></div>`).join(""):"<p class='muted'>कोई business नहीं।</p>";
+document.getElementById("adminLocations").innerHTML=locations.length?locations.map(x=>`<div class="item"><div><b>${esc(x.name)}</b><div class="muted">${esc(x.address)}</div></div><div class="actions"><button class="btn secondary" onclick="editLocation(${x.id})">Edit</button><button class="btn danger" onclick="deleteLocation(${x.id})">Delete</button></div></div>`).join(""):"<p class='muted'>कोई location नहीं।</p>";
+}
+init();
+</script>
+</body>
+</html>
