@@ -1,75 +1,99 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Apna Mau — अपना शहर, अपनी पहचान</title>
 <meta name="description" content="Apna Mau — मऊ की दुकानें, सेवाएँ, जगहें और स्थानीय अपडेट एक जगह।">
 <style>
-:root{--blue:#155eef;--navy:#082b61;--sky:#eaf3ff;--ink:#102a43;--muted:#627d98;--card:#fff;--line:#e2eaf4;--green:#0a9b57}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,sans-serif;background:#f6f9fd;color:var(--ink)}
-header{position:relative;overflow:hidden;background:linear-gradient(135deg,#06265a 0%,#0c4ebd 58%,#2386f2 100%);color:#fff;padding:18px 5% 92px}
-header:before,header:after{content:"";position:absolute;border-radius:50%;background:#fff1;pointer-events:none}header:before{width:380px;height:380px;right:-100px;top:-180px}header:after{width:280px;height:280px;left:-150px;bottom:-180px}
-nav{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1200px;margin:auto}
-.logo{font-size:28px;font-weight:900;letter-spacing:-.5px}.tag{display:block;font-size:12px;opacity:.82;font-weight:500;margin-top:-2px}
-nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:700;font-size:14px}.nav-cta{background:#fff;color:#0d4fc2!important;padding:10px 14px;border-radius:12px}
-.hero{position:relative;z-index:1;max-width:1120px;margin:52px auto 0;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:34px}
-.eyebrow{display:inline-flex;gap:8px;align-items:center;background:#ffffff18;border:1px solid #ffffff30;padding:8px 12px;border-radius:999px;font-size:13px;font-weight:800}
-.hero h1{font-size:clamp(40px,6vw,68px);line-height:1.02;margin:16px 0 12px;letter-spacing:-2px}.hero h1 span{color:#b9f3d3}.hero p{font-size:18px;line-height:1.6;max-width:650px;opacity:.93}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}.btn{display:inline-block;border:0;border-radius:12px;padding:13px 18px;background:var(--green);color:#fff;text-decoration:none;font-weight:800;cursor:pointer;box-shadow:0 8px 20px #0002}.btn.light{background:#fff;color:#0d4fc2}
-.stats{display:flex;gap:18px;margin-top:26px;flex-wrap:wrap}.stat{background:#fff12;border:1px solid #ffffff24;border-radius:14px;padding:11px 15px}.stat b{display:block;font-size:18px}.stat span{font-size:12px;opacity:.8}
-.map-card{background:#fff;color:var(--ink);border-radius:24px;padding:14px;box-shadow:0 24px 60px #001a4a55;transform:rotate(1deg)}.map-head{display:flex;justify-content:space-between;align-items:center;padding:5px 8px 10px}.map-head b{font-size:17px}.map-head span{font-size:12px;color:var(--muted)}
-.map{position:relative;min-height:360px;border-radius:18px;overflow:hidden;background:radial-gradient(circle at 20% 20%,#fff 0 2px,transparent 3px),linear-gradient(135deg,#e8f5e8,#dff0fb);background-size:80px 80px,auto}
-.up-shape{position:absolute;inset:24px 28px 22px 25px;background:#cce6c8;clip-path:polygon(10% 18%,25% 6%,43% 10%,59% 3%,78% 12%,92% 30%,87% 48%,96% 61%,82% 76%,68% 91%,51% 82%,36% 94%,21% 78%,7% 64%,13% 48%,3% 35%);border:3px solid #8ab989;filter:drop-shadow(0 8px 9px #0002)}
-.up-text{position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);font-size:25px;font-weight:900;color:#477548;opacity:.45;letter-spacing:2px}
-.pin{position:absolute;left:62%;top:63%;width:34px;height:34px;border-radius:50% 50% 50% 0;background:#ef3f45;transform:rotate(-45deg);box-shadow:0 7px 15px #c00a}.pin:after{content:"";position:absolute;width:11px;height:11px;background:#fff;border-radius:50%;left:11px;top:11px}.pin-label{position:absolute;left:65%;top:55%;background:#fff;padding:8px 11px;border-radius:10px;box-shadow:0 6px 20px #0002;font-size:12px;font-weight:900}.road{position:absolute;background:#fff8;height:10px;transform:rotate(-20deg);width:120%;left:-10%;top:50%}.road2{position:absolute;background:#fff8;height:8px;transform:rotate(27deg);width:120%;left:-10%;top:67%}
-main{max-width:1200px;margin:-34px auto 60px;padding:0 18px;position:relative;z-index:3}.section{margin-top:38px}.section h2{margin:0 0 7px;font-size:27px}.sub{color:var(--muted);margin-top:0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 7px 24px #1230470b}.cat{cursor:pointer;text-align:center;transition:.22s}.cat:hover{transform:translateY(-5px);box-shadow:0 14px 30px #12304718;border-color:#bdd3f5}.icon{font-size:32px}.cat b{display:block;margin-top:8px}
-.location{display:grid;grid-template-columns:1fr 1fr;gap:18px}.location .card{padding:24px}.mini-list{display:grid;gap:11px;margin-top:18px}.mini{display:flex;gap:10px;align-items:center}.mini i{font-style:normal;background:var(--sky);padding:8px;border-radius:10px}
-.updates{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.update{min-height:140px}.pill{display:inline-block;background:#eaf2ff;color:#155eef;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:800}
-.cta{background:linear-gradient(135deg,#fff,#edf6ff);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-footer{background:#081f3d;color:#d9e2ec;padding:38px 5%;text-align:center}.footer-links{margin:12px 0}.footer-links a{color:#d9e2ec;margin:0 8px;text-decoration:none}
-.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;padding:20px;z-index:9}.modalbox{background:#fff;max-width:520px;width:100%;border-radius:18px;padding:25px}.modalbox input,.modalbox textarea,.modalbox select{width:100%;padding:12px;margin:7px 0 12px;border:1px solid #d9e2ec;border-radius:9px}.close{float:right;cursor:pointer;font-size:22px}
-.results{display:none;margin-top:18px}.result{padding:14px;border-bottom:1px solid var(--line)}
-@media(max-width:800px){nav a{display:none}.hero{grid-template-columns:1fr;margin-top:35px}.map-card{transform:none}.location{grid-template-columns:1fr}.hero h1{letter-spacing:-1px}}
+:root{--primary:#155eef;--dark:#102a43;--muted:#627d98;--bg:#f5f8fc;--card:#fff;--border:#e6edf5;--success:#07883f}
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,sans-serif;background:var(--bg);color:var(--dark)}
+header{background:linear-gradient(135deg,#0b3d91,#155eef);color:white;padding:18px 5% 58px}
+nav{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1200px;margin:auto}
+.logo{font-size:27px;font-weight:800}.tag{font-size:13px;opacity:.9}
+nav a{color:white;text-decoration:none;margin-left:18px;font-weight:600}
+.hero{max-width:1000px;margin:48px auto 0;text-align:center}.hero h1{font-size:clamp(34px,7vw,64px);margin:0 0 8px}.hero p{font-size:18px;opacity:.94}
+.search{background:white;border-radius:16px;padding:8px;display:flex;max-width:850px;margin:28px auto 0;box-shadow:0 12px 35px #061f4d55}
+.search input{flex:1;border:0;outline:0;padding:15px;font-size:16px;border-radius:12px}.search button{border:0;background:var(--primary);color:white;padding:0 24px;border-radius:12px;font-weight:700}
+main{max-width:1200px;margin:-30px auto 60px;padding:0 18px}
+.section{margin-top:38px}.section h2{margin-bottom:8px}.sub{color:var(--muted);margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 5px 18px #1230470d}.cat{cursor:pointer;text-align:center;transition:.2s}.cat:hover{transform:translateY(-3px);box-shadow:0 10px 24px #12304718}
+.icon{font-size:32px}.cat b{display:block;margin-top:8px}
+.updates{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.update{min-height:130px}.pill{display:inline-block;background:#eaf2ff;color:#155eef;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:700}
+.cta{background:white;border:1px solid var(--border);border-radius:18px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.btn{display:inline-block;border:0;border-radius:11px;padding:12px 18px;background:var(--primary);color:#fff;text-decoration:none;font-weight:700;cursor:pointer}.btn.secondary{background:#e9f1ff;color:var(--primary)}
+.results{display:none;margin-top:18px}.result{padding:14px;border-bottom:1px solid var(--border)}footer{background:#0b2038;color:#d9e2ec;padding:35px 5%;text-align:center}
+.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;padding:20px;z-index:5}.modalbox{background:#fff;max-width:520px;width:100%;border-radius:18px;padding:25px}.modalbox input,.modalbox textarea,.modalbox select{width:100%;padding:12px;margin:7px 0 12px;border:1px solid #d9e2ec;border-radius:9px}.close{float:right;cursor:pointer;font-size:22px}
+@media(max-width:650px){nav a{display:none}.search{flex-direction:column}.search button{height:48px}.hero{margin-top:32px}main{margin-top:-22px}}
 </style>
 </head>
 <body>
 <header>
 <nav><div><div class="logo">🏙️ Apna Mau</div><div class="tag">अपना शहर, अपनी पहचान</div></div>
-<div><a href="#explore">Explore</a><a href="#updates">Updates</a><a class="nav-cta" href="#" onclick="openModal();return false">+ Business जोड़ें</a></div></nav>
-<div class="hero">
-<div>
-<div class="eyebrow">📍 Mau, Uttar Pradesh • आपका लोकल प्लेटफॉर्म</div>
-<h1>मऊ को <span>एक जगह</span> से जानिए।</h1>
-<p>मऊ की दुकानें, अस्पताल, होटल, रेस्टोरेंट, शिक्षा, नौकरियां, events और जरूरी local information — आसान और सुंदर तरीके से।</p>
-<div class="actions"><a class="btn" href="#explore">🔎 Explore Mau</a><a class="btn light" href="#location">📍 Mau Location</a></div>
-<div class="stats"><div class="stat"><b>📍 Mau</b><span>Uttar Pradesh</span></div><div class="stat"><b>🏪 Local</b><span>Businesses</span></div><div class="stat"><b>📰 Live</b><span>Local Updates</span></div></div>
-</div>
-<div class="map-card"><div class="map-head"><b>🗺️ Uttar Pradesh</b><span>📍 Mau highlighted</span></div><div class="map"><div class="up-shape"></div><div class="road"></div><div class="road2"></div><div class="up-text">उत्तर प्रदेश</div><div class="pin"></div><div class="pin-label">📍 मऊ<br><small>Mau, U.P.</small></div></div></div>
-</div>
+<div><a href="#categories">Categories</a><a href="#updates">Updates</a><a href="#" onclick="openModal('business');return false">अपना Business जोड़ें</a></div></nav>
+<div class="hero"><h1>अपना शहर, अपनी पहचान</h1><p>मऊ की दुकानें, सेवाएँ, जगहें और जरूरी जानकारी — एक ही जगह।</p>
+<div class="search"><input id="searchInput" placeholder="मऊ में क्या ढूंढ रहे हैं? जैसे Hospital, Hotel, Restaurant..." onkeydown="if(event.key==='Enter') search()"><button onclick="search()">🔍 Search</button></div>
+<div id="results" class="results card"></div></div>
 </header>
+
 <main>
-<section class="section" id="explore"><h2>🔎 मऊ में क्या खोज रहे हैं?</h2><p class="sub">Category चुनें और अपनी जरूरत की local information खोजें।</p>
+<section class="section" id="categories"><h2>🔎 क्या खोज रहे हैं?</h2><p class="sub">Category चुनकर Mau में संबंधित businesses और services देखें।</p>
 <div class="grid">
-<div class="card cat" onclick="quick('Shop')"><div class="icon">🛍️</div><b>Shops & Shopping</b></div><div class="card cat" onclick="quick('Hospital')"><div class="icon">🏥</div><b>Hospitals & Clinics</b></div><div class="card cat" onclick="quick('Medical')"><div class="icon">💊</div><b>Medical Stores</b></div><div class="card cat" onclick="quick('Restaurant')"><div class="icon">🍽️</div><b>Restaurants</b></div><div class="card cat" onclick="quick('Hotel')"><div class="icon">🏨</div><b>Hotels</b></div><div class="card cat" onclick="quick('Travel')"><div class="icon">🚗</div><b>Travel & Transport</b></div><div class="card cat" onclick="quick('Education')"><div class="icon">🎓</div><b>Education</b></div><div class="card cat" onclick="quick('Service')"><div class="icon">🔧</div><b>Local Services</b></div><div class="card cat" onclick="quick('Job')"><div class="icon">💼</div><b>Jobs</b></div><div class="card cat" onclick="quick('Event')"><div class="icon">📅</div><b>Events</b></div>
-</div>
-<div class="card searchbox" style="margin-top:18px;padding:10px;display:flex;gap:8px"><input id="searchInput" style="flex:1;border:0;outline:0;padding:12px;font-size:15px" placeholder="मऊ में क्या ढूंढ रहे हैं? Hospital, Hotel, Restaurant..." onkeydown="if(event.key==='Enter')search()"><button class="btn" onclick="search()">🔍 Search</button></div><div id="results" class="results card"></div>
-</section>
+<div class="card cat" onclick="quick('Shop')"><div class="icon">🛍️</div><b>Shops & Shopping</b></div>
+<div class="card cat" onclick="quick('Hospital')"><div class="icon">🏥</div><b>Hospitals & Clinics</b></div>
+<div class="card cat" onclick="quick('Medical')"><div class="icon">💊</div><b>Medical Stores</b></div>
+<div class="card cat" onclick="quick('Restaurant')"><div class="icon">🍽️</div><b>Restaurants</b></div>
+<div class="card cat" onclick="quick('Hotel')"><div class="icon">🏨</div><b>Hotels</b></div>
+<div class="card cat" onclick="quick('Travel')"><div class="icon">🚗</div><b>Travel & Transport</b></div>
+<div class="card cat" onclick="quick('Education')"><div class="icon">🎓</div><b>Education</b></div>
+<div class="card cat" onclick="quick('Service')"><div class="icon">🔧</div><b>Local Services</b></div>
+<div class="card cat" onclick="quick('Job')"><div class="icon">💼</div><b>Jobs</b></div>
+<div class="card cat" onclick="quick('Event')"><div class="icon">📅</div><b>Events</b></div>
+</div></section>
 
-<section class="section location" id="location"><div class="card"><h2>📍 मऊ, उत्तर प्रदेश</h2><p class="sub">अपनी local identity को homepage पर prominently दिखाने के लिए Mau location को highlight किया गया है।</p><div class="mini-list"><div class="mini"><i>🗺️</i><span><b>Location</b><br>Mau (Maunath Bhanjan), Uttar Pradesh</span></div><div class="mini"><i>🚩</i><span><b>District</b><br>Mau District</span></div><div class="mini"><i>🔎</i><span><b>Explore</b><br>Local businesses & services</span></div></div></div>
-<div class="card"><h2>🌟 क्यों Apna Mau?</h2><p class="sub">एक ऐसा local platform जहाँ मऊ से जुड़ी उपयोगी जानकारी जल्दी मिल सके।</p><div class="mini-list"><div class="mini"><i>✅</i><span><b>Easy Search</b><br>Category और keyword से खोजें</span></div><div class="mini"><i>🛡️</i><span><b>Trust</b><br>Verified listings का option</span></div><div class="mini"><i>📱</i><span><b>Mobile Friendly</b><br>Phone पर भी आसान अनुभव</span></div></div></div></section>
 
-<section class="section" id="updates"><h2>📰 Mau Updates</h2><p class="sub">Local news, events, offers और announcements के लिए dedicated space.</p><div class="updates">
-<div class="card update"><span class="pill">Local</span><h3>मऊ की Latest Updates</h3><p class="sub">Admin panel से नई updates publish की जा सकती हैं।</p></div><div class="card update"><span class="pill">Events</span><h3>Local Events</h3><p class="sub">शहर के कार्यक्रम और community events यहाँ दिखेंगे।</p></div><div class="card update"><span class="pill">Offers</span><h3>Business Offers</h3><p class="sub">Local businesses अपने offers submit कर सकेंगे।</p></div></div></section>
 
-<section class="section"><div class="cta"><div><h2>🏪 आपका Business मऊ में है?</h2><p class="sub">अपना business profile submit करें। Verification के बाद profile live की जा सकती है।</p></div><button class="btn" onclick="openModal()">+ अपना Business जोड़ें</button></div></section>
+<section class="section" id="updates"><h2>📰 Mau Updates</h2><p class="sub">स्थानीय खबरें, events, offers और जरूरी announcements.</p>
+<div class="updates">
+<div class="card update"><span class="pill">Sample Update</span><h3>मऊ की Latest Updates</h3><p class="sub">Admin panel से यहाँ नई updates कभी भी जोड़ी जा सकती हैं।</p></div>
+<div class="card update"><span class="pill">Events</span><h3>Local Events</h3><p class="sub">शहर के कार्यक्रम और community events यहाँ दिखेंगे।</p></div>
+<div class="card update"><span class="pill">Offers</span><h3>Business Offers</h3><p class="sub">Verified businesses अपने offers submit कर सकेंगे।</p></div>
+</div></section>
+
+<section class="section"><div class="cta"><div><h2>🏪 आपका Business है?</h2><p class="sub">अपना business profile submit करें। Verification के बाद profile live की जा सकती है।</p></div><button class="btn" onclick="openModal('business')">+ अपना Business जोड़ें</button></div></section>
+
+<section class="section"><div class="card"><h2>🔐 Verification & Trust</h2><p class="sub">Business owners mobile OTP, email verification और admin approval के जरिए verified किए जा सकते हैं। Aadhaar की जरूरत नहीं।</p><p>✅ Verified Business &nbsp; • &nbsp; 📍 Location &nbsp; • &nbsp; 📞 Contact &nbsp; • &nbsp; 🛡️ Report Listing</p></div></section>
 </main>
-<footer><b>🏙️ Apna Mau</b><br><span>अपना शहर, अपनी पहचान</span><div class="footer-links"><a href="#explore">Explore</a><a href="#location">Location</a><a href="#updates">Updates</a></div><small>© 2026 Apna Mau • प्रारंभिक demo website</small></footer>
-<div class="modal" id="modal"><div class="modalbox"><span class="close" onclick="closeModal()">✕</span><h2>🏪 Business जोड़ें</h2><form onsubmit="submitBusiness(event)"><label>Business Name</label><input required placeholder="जैसे ABC Mobile Shop"><label>Category</label><select><option>Shop</option><option>Hospital</option><option>Medical</option><option>Restaurant</option><option>Hotel</option><option>Travel</option><option>Education</option><option>Service</option></select><label>Mobile Number</label><input required type="tel" placeholder="10 digit mobile"><label>Email</label><input type="email" placeholder="example@email.com"><label>Address</label><textarea required placeholder="पूरा पता"></textarea><button class="btn" type="submit">Submit for Verification</button></form></div></div>
+
+<footer><b>🏙️ Apna Mau</b><br><span>अपना शहर, अपनी पहचान</span><br><small>© 2026 Apna Mau • यह प्रारंभिक demo website है।</small></footer>
+
+<div class="modal" id="modal"><div class="modalbox"><span class="close" onclick="closeModal()">✕</span><h2>🏪 Business जोड़ें</h2>
+<form onsubmit="submitBusiness(event)"><label>Business Name</label><input required placeholder="जैसे ABC Mobile Shop">
+<label>Category</label><select><option>Shop</option><option>Hospital</option><option>Medical</option><option>Restaurant</option><option>Hotel</option><option>Travel</option><option>Education</option><option>Service</option></select>
+<label>Mobile Number</label><input required type="tel" placeholder="10 digit mobile">
+<label>Email</label><input type="email" placeholder="example@email.com">
+<label>Address</label><textarea required placeholder="पूरा पता"></textarea>
+<button class="btn" type="submit">Submit for Verification</button></form></div></div>
+
 <script>
-const demo=[["Shop","Kirana, clothing, mobile, electronics आदि"],["Hospital","Hospital, clinic, diagnostic & ambulance"],["Medical","Medical & pharmacy services"],["Restaurant","Restaurant, cafe, sweets & fast food"],["Hotel","Hotel, rooms & facilities"],["Travel","Travel agency, taxi, auto & rental"],["Education","School, college, ITI, coaching"],["Service","Electrician, plumber, mechanic, repair"],["Job","Local job opportunities & updates"],["Event","Mau के local events & programs"]];
-function search(){let q=document.getElementById('searchInput').value.trim().toLowerCase(),box=document.getElementById('results');if(!q){box.style.display='none';return}let found=demo.filter(x=>(x[0]+" "+x[1]).toLowerCase().includes(q));box.innerHTML='<h3>Search results</h3>'+(found.length?found.map(x=>`<div class="result"><b>${x[0]}</b><br><span class="sub">${x[1]}</span></div>`).join(''):'<div class="result">अभी demo में इस search की listing नहीं है। Live database जोड़ने पर real businesses दिखेंगे।');box.style.display='block'}
-function quick(q){document.getElementById('searchInput').value=q;search();document.getElementById('results').scrollIntoView({behavior:'smooth',block:'center'})}
-function openModal(){document.getElementById('modal').style.display='flex'}function closeModal(){document.getElementById('modal').style.display='none'}function submitBusiness(e){e.preventDefault();alert('Demo: Business request submit हो गई। Real website में यह Admin Panel में verification के लिए जाएगी।');closeModal()}
+const demo=[
+["Shops & Shopping","Kirana, clothing, mobile, electronics आदि"],
+["Hospitals & Clinics","Hospital, clinic, diagnostic & ambulance"],
+["Medical Stores","Medical & pharmacy services"],
+["Restaurants","Restaurant, cafe, sweets & fast food"],
+["Hotels","Hotel, rooms, facilities & contact"],
+["Travel & Transport","Travel agency, taxi, auto & rental"],
+["Education","School, college, ITI, coaching"],
+["Local Services","Electrician, plumber, mechanic, repair"],
+["Jobs","Local job opportunities & updates"],
+["Events","Mau के local events & programs"]
+];
+function search(){let q=document.getElementById('searchInput').value.trim().toLowerCase();let box=document.getElementById('results');if(!q){box.style.display='none';return}let found=demo.filter(x=>(x[0]+" "+x[1]).toLowerCase().includes(q));box.innerHTML='<h3>Search results</h3>'+(found.length?found.map(x=>`<div class="result"><b>${x[0]}</b><br><span class="sub">${x[1]}</span></div>`).join(''):'<div class="result">अभी demo में इस search की listing नहीं है। Live database जोड़ने पर real businesses दिखेंगे।');box.style.display='block'}
+function quick(q){document.getElementById('searchInput').value=q;search();window.scrollTo({top:0,behavior:'smooth'})}
+function openModal(){document.getElementById('modal').style.display='flex'}
+function closeModal(){document.getElementById('modal').style.display='none'}
+function submitBusiness(e){e.preventDefault();alert('Demo: Business request submit हो गई। Real website में यह Admin Panel में verification के लिए जाएगी।');closeModal()}
 </script>
-</body></html>
+</body>
+</html>
