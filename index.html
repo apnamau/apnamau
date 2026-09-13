@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apna Mau — अपना शहर, अपनी पहचान</title>
+<meta name="description" content="Apna Mau — मऊ की दुकानें, सेवाएँ, जगहें और स्थानीय अपडेट एक जगह।">
+<style>
+:root{--primary:#155eef;--dark:#102a43;--muted:#627d98;--bg:#f5f8fc;--card:#fff;--border:#e6edf5;--success:#07883f}
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,sans-serif;background:var(--bg);color:var(--dark)}
+header{background:linear-gradient(135deg,#0b3d91,#155eef);color:white;padding:18px 5% 58px}
+nav{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1200px;margin:auto}
+.logo{font-size:27px;font-weight:800}.tag{font-size:13px;opacity:.9}
+nav a{color:white;text-decoration:none;margin-left:18px;font-weight:600}
+.hero{max-width:1000px;margin:48px auto 0;text-align:center}.hero h1{font-size:clamp(34px,7vw,64px);margin:0 0 8px}.hero p{font-size:18px;opacity:.94}
+.search{background:white;border-radius:16px;padding:8px;display:flex;max-width:850px;margin:28px auto 0;box-shadow:0 12px 35px #061f4d55}
+.search input{flex:1;border:0;outline:0;padding:15px;font-size:16px;border-radius:12px}.search button{border:0;background:var(--primary);color:white;padding:0 24px;border-radius:12px;font-weight:700}
+main{max-width:1200px;margin:-30px auto 60px;padding:0 18px}
+.section{margin-top:38px}.section h2{margin-bottom:8px}.sub{color:var(--muted);margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 5px 18px #1230470d}.cat{cursor:pointer;text-align:center;transition:.2s}.cat:hover{transform:translateY(-3px);box-shadow:0 10px 24px #12304718}
+.icon{font-size:32px}.cat b{display:block;margin-top:8px}
+.updates{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.update{min-height:130px}.pill{display:inline-block;background:#eaf2ff;color:#155eef;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:700}
+.cta{background:white;border:1px solid var(--border);border-radius:18px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.btn{display:inline-block;border:0;border-radius:11px;padding:12px 18px;background:var(--primary);color:#fff;text-decoration:none;font-weight:700;cursor:pointer}.btn.secondary{background:#e9f1ff;color:var(--primary)}
+.results{display:none;margin-top:18px}.result{padding:14px;border-bottom:1px solid var(--border)}footer{background:#0b2038;color:#d9e2ec;padding:35px 5%;text-align:center}
+.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;padding:20px;z-index:5}.modalbox{background:#fff;max-width:520px;width:100%;border-radius:18px;padding:25px}.modalbox input,.modalbox textarea,.modalbox select{width:100%;padding:12px;margin:7px 0 12px;border:1px solid #d9e2ec;border-radius:9px}.close{float:right;cursor:pointer;font-size:22px}
+@media(max-width:650px){nav a{display:none}.search{flex-direction:column}.search button{height:48px}.hero{margin-top:32px}main{margin-top:-22px}}
+</style>
+</head>
+<body>
+<header>
+<nav><div><div class="logo">🏙 Apna Mau</div><div class="tag">अपना शहर, अपनी पहचान</div></div>
+<div><a href="#categories">Categories</a><a href="#updates">Updates</a><a href="#" onclick="openModal('business');return false">अपना Business जोड़ें</a></div></nav>
+<div class="hero"><h1>अपना शहर, अपनी पहचान</h1><p>मऊ की दुकानें, सेवाएँ, जगहें और जरूरी जानकारी — एक ही जगह।</p>
+<div class="search"><input id="searchInput" placeholder="मऊ में क्या ढूंढ रहे हैं? जैसे Hospital, Hotel, Restaurant..." onkeydown="if(event.key==='Enter') search()"><button onclick="search()">🔍 Search</button></div>
+<div id="results" class="results card"></div></div>
+</header>
+
+<main>
+<section class="section" id="categories"><h2>🔎 क्या खोज रहे हैं?</h2><p class="sub">Category चुनकर Mau में संबंधित businesses और services देखें।</p>
+<div class="grid">
+<div class="card cat" onclick="quick('Shop')"><div class="icon">🛍️</div><b>Shops & Shopping</b></div>
+<div class="card cat" onclick="quick('Hospital')"><div class="icon">🏥</div><b>Hospitals & Clinics</b></div>
+<div class="card cat" onclick="quick('Medical')"><div class="icon">💊</div><b>Medical Stores</b></div>
+<div class="card cat" onclick="quick('Restaurant')"><div class="icon">🍽️</div><b>Restaurants</b></div>
+<div class="card cat" onclick="quick('Hotel')"><div class="icon">🏨</div><b>Hotels</b></div>
+<div class="card cat" onclick="quick('Travel')"><div class="icon">🚗</div><b>Travel & Transport</b></div>
+<div class="card cat" onclick="quick('Education')"><div class="icon">🎓</div><b>Education</b></div>
+<div class="card cat" onclick="quick('Service')"><div class="icon">🔧</div><b>Local Services</b></div>
+<div class="card cat" onclick="quick('Job')"><div class="icon">💼</div><b>Jobs</b></div>
+<div class="card cat" onclick="quick('Event')"><div class="icon">📅</div><b>Events</b></div>
+</div></section>
+
+<section class="section"><div class="cta"><div><h2>📍 Location से आसानी से खोजें</h2><p class="sub">Business का address, map location और directions एक जगह।</p></div><button class="btn" onclick="alert('Location search को live database और map service से जोड़ा जा सकता है।')">Explore on Map</button></div></section>
+
+<section class="section" id="updates"><h2>📰 Mau Updates</h2><p class="sub">स्थानीय खबरें, events, offers और जरूरी announcements.</p>
+<div class="updates">
+<div class="card update"><span class="pill">Sample Update</span><h3>मऊ की Latest Updates</h3><p class="sub">Admin panel से यहाँ नई updates कभी भी जोड़ी जा सकती हैं।</p></div>
+<div class="card update"><span class="pill">Events</span><h3>Local Events</h3><p class="sub">शहर के कार्यक्रम और community events यहाँ दिखेंगे।</p></div>
+<div class="card update"><span class="pill">Offers</span><h3>Business Offers</h3><p class="sub">Verified businesses अपने offers submit कर सकेंगे।</p></div>
+</div></section>
+
+<section class="section"><div class="cta"><div><h2>🏪 आपका Business है?</h2><p class="sub">अपना business profile submit करें। Verification के बाद profile live की जा सकती है।</p></div><button class="btn" onclick="openModal('business')">+ अपना Business जोड़ें</button></div></section>
+
+<section class="section"><div class="card"><h2>🔐 Verification & Trust</h2><p class="sub">Business owners mobile OTP, email verification और admin approval के जरिए verified किए जा सकते हैं। Aadhaar की जरूरत नहीं।</p><p>✅ Verified Business &nbsp; • &nbsp; 📍 Location &nbsp; • &nbsp; 📞 Contact &nbsp; • &nbsp; 🛡️ Report Listing</p></div></section>
+</main>
+
+<footer><b>🏙️ Apna Mau</b><br><span>अपना शहर, अपनी पहचान</span><br><small>© 2026 Apna Mau • यह प्रारंभिक demo website है।</small></footer>
+
+<div class="modal" id="modal"><div class="modalbox"><span class="close" onclick="closeModal()">✕</span><h2>🏪 Business जोड़ें</h2>
+<form onsubmit="submitBusiness(event)"><label>Business Name</label><input required placeholder="जैसे ABC Mobile Shop">
+<label>Category</label><select><option>Shop</option><option>Hospital</option><option>Medical</option><option>Restaurant</option><option>Hotel</option><option>Travel</option><option>Education</option><option>Service</option></select>
+<label>Mobile Number</label><input required type="tel" placeholder="10 digit mobile">
+<label>Email</label><input type="email" placeholder="example@email.com">
+<label>Address</label><textarea required placeholder="पूरा पता"></textarea>
+<button class="btn" type="submit">Submit for Verification</button></form></div></div>
+
+<script>
+const demo=[
+["Shops & Shopping","Kirana, clothing, mobile, electronics आदि"],
+["Hospitals & Clinics","Hospital, clinic, diagnostic & ambulance"],
+["Medical Stores","Medical & pharmacy services"],
+["Restaurants","Restaurant, cafe, sweets & fast food"],
+["Hotels","Hotel, rooms, facilities & contact"],
+["Travel & Transport","Travel agency, taxi, auto & rental"],
+["Education","School, college, ITI, coaching"],
+["Local Services","Electrician, plumber, mechanic, repair"],
+["Jobs","Local job opportunities & updates"],
+["Events","Mau के local events & programs"]
+];
+function search(){let q=document.getElementById('searchInput').value.trim().toLowerCase();let box=document.getElementById('results');if(!q){box.style.display='none';return}let found=demo.filter(x=>(x[0]+" "+x[1]).toLowerCase().includes(q));box.innerHTML='<h3>Search results</h3>'+(found.length?found.map(x=>`<div class="result"><b>${x[0]}</b><br><span class="sub">${x[1]}</span></div>`).join(''):'<div class="result">अभी demo में इस search की listing नहीं है। Live database जोड़ने पर real businesses दिखेंगे।');box.style.display='block'}
+function quick(q){document.getElementById('searchInput').value=q;search();window.scrollTo({top:0,behavior:'smooth'})}
+function openModal(){document.getElementById('modal').style.display='flex'}
+function closeModal(){document.getElementById('modal').style.display='none'}
+function submitBusiness(e){e.preventDefault();alert('Demo: Business request submit हो गई। Real website में यह Admin Panel में verification के लिए जाएगी।');closeModal()}
+</script>
+</body>
+</html>
